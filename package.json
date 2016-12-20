@@ -1,0 +1,25 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "description": "Simple blog api express based ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tindy360/Blog-api.git"
+  },
+  "keywords": [
+    "blog",
+    "api",
+    "express",
+    "node"
+  ],
+  "author": "Tom Indellicate base code supplied by thinkful project",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tindy360/Blog-api/issues"
+  },
+  "homepage": "https://github.com/tindy360/Blog-api#readme"
+}
