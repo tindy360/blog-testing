@@ -1,15 +1,17 @@
-/*jshint esversion: 6 */
 const express = require('express');
-const router = express.Router('');
+const {BlogPosts} = require('./module');
+const router = express.Router();
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-const {BlogPosts} = require('./module');
 
 router.get('/', (req, res) => {
-  res.json(BlogPosts.get);
+  res.json({BlogPosts});
+  console.error(message);
+  return res.status(201).json(message)
 });
+
 
 router.post('/', jsonParser, (req, res) =>{
   const requireFields = ['title', 'content', 'author', 'Date'];
@@ -18,7 +20,7 @@ router.post('/', jsonParser, (req, res) =>{
     if (!(field in req.body)) {
       const message = `Missing \`${field}\` in request body`;
       console.error(message);
-      return res.status(400).send(message);
+      return res.status(400).json(message);
     }
   }
   const item = BlogPosts.create(
@@ -33,7 +35,7 @@ router.put('/:id', jsonParser,(req,res) =>{
   for (let i=0; i<requiredFields.length; i++) {
    const field = requiredFields[i];
    if (!(field in req.body)) {
-     const message = `Missing \`${field}\` in request body`;
+     const message = `Missing \`${field}\` in request body`
      console.error(message);
      return res.status(400).send(message);
    }
@@ -55,3 +57,10 @@ router.put('/:id', jsonParser,(req,res) =>{
  });
  res.status(204).json(updatedItem);
 });
+router.delete('/:id', (req, res) => {
+  BlogPosts.delete(req.params.id);
+  console.log(`Deleted blog post with id \`${req.params.ID}\``);
+  res.status(204).end();
+});
+
+module.exports = router;
